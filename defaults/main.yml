@@ -74,11 +74,11 @@ sysctl_config:
   net.ipv4.icmp_ignore_bogus_error_responses: 1
 
   # Limit the amount of traffic the system uses for ICMP. | sysctl-05
-  net.ipv4.icmp_ratelimit: 100
+  # net.ipv4.icmp_ratelimit: 100
 
   # Adjust the ICMP ratelimit to include ping, dst unreachable,
   # source quench, ime exceed, param problem, timestamp reply, information reply | sysctl-06
-  net.ipv4.icmp_ratemask: 88089
+  # net.ipv4.icmp_ratemask: 88089
 
   # Disable IPv6 | sysctl-18
   net.ipv6.conf.all.disable_ipv6: 1
@@ -239,7 +239,7 @@ os_unused_filesystems:
   - "hfsplus"
   - "squashfs"
   - "udf"
-  - "vfat"
+  
 
 # whitelist for used filesystems
 os_filesystem_whitelist: []

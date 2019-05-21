@@ -17,7 +17,7 @@
       when: ansible_distribution == 'Fedora'
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
-  vars:
+  vars:   #7.1 & 7.2
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: true
     os_security_suid_sgid_remove_from_unknown: true
@@ -63,8 +63,8 @@
       net.ipv6.conf.default.dad_transmits: 0
       net.ipv6.conf.default.max_addresses: 1
       kernel.sysrq: 0
-      fs.suid_dumpable: 0
-      kernel.randomize_va_space: 2
+      fs.suid_dumpable: 0   #4.1
+      kernel.randomize_va_space: 2  #4.3
 
 - name: wrapper playbook for kitchen testing "ansible-os-hardening"
   hosts: localhost

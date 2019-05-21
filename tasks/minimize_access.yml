@@ -27,14 +27,14 @@
     - "{{ minimize_access_directories.results }}"
     - stdout_lines
 
-- name: change shadow ownership to root and mode to 0600 | os-02
+- name: change shadow ownership to root and mode to 0600 | os-02  #12.2 
   file:
     dest: '/etc/shadow'
     owner: '{{ os_shadow_perms.owner }}'
     group: '{{ os_shadow_perms.group }}'
     mode: '{{ os_shadow_perms.mode }}'
 
-- name: change passwd ownership to root and mode to 0644 | os-03
+- name: change passwd ownership to root and mode to 0644 | os-03 #12.1
   file:
     dest: '/etc/passwd'
     owner: '{{ os_passwd_perms.owner }}'
