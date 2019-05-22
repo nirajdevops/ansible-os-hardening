@@ -21,8 +21,8 @@
     dest: '~{{ item }}/.netrc'
     state: 'absent'
 
-- name: dlete .forward-files from system | os-09
-  files:
+- name: delete .forward-files from system | os-09
+  file:
     dest: '~{{ item }}/.forward'
     state: 'absent'
   with_flattened: '{{ users.stdout_lines | default([]) }}'

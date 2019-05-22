@@ -1,22 +1,23 @@
 ---
 - name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
-  hosts: localhost
+  hosts: ansible-multi-node-1
+  become: true
   roles:
     - ansible-os-hardening
   pre_tasks:
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
-      when: ansible_os_family == 'Debian'
-    - name: install required tools on fedora
-      dnf:
-        name:
-          - python
-          - findutils
-          - procps-ng
-      when: ansible_distribution == 'Fedora'
-    - name: create recursing symlink to test minimize access
-      shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
+      when: ansible_os_family == 'Ubuntu'
+   # - name: install required tools on fedora
+   #  dnf:
+   #     name:
+   #       - python
+   #       - findutils
+   #       - procps-ng
+   #   when: ansible_distribution == 'Fedora'
+   # - name: create recursing symlink to test minimize access
+   #   shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
   vars:   #7.1 & 7.2
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: true
@@ -37,8 +38,8 @@
       net.ipv4.conf.default.rp_filter: 1
       net.ipv4.icmp_echo_ignore_broadcasts: 1
       net.ipv4.icmp_ignore_bogus_error_responses: 1
-      net.ipv4.icmp_ratelimit: 100
-      net.ipv4.icmp_ratemask: 88089
+     # net.ipv4.icmp_ratelimit: 100
+     # net.ipv4.icmp_ratemask: 88089
       net.ipv6.conf.all.disable_ipv6: 1
       net.ipv4.conf.all.arp_ignore: 1
       net.ipv4.conf.all.arp_announce: 2
@@ -67,13 +68,13 @@
       kernel.randomize_va_space: 2  #4.3
 
 - name: wrapper playbook for kitchen testing "ansible-os-hardening"
-  hosts: localhost
+  hosts: ansible-multi-node-1
   vars:
     - os_auditd_enabled: false
   pre_tasks:
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
-        update_cache: yes
-      when: ansible_os_family == 'Debian'
+       update_cache: yes
+      when: ansible_os_family == 'Ubuntu'
   roles:
     - ansible-os-hardening
