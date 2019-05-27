@@ -1,7 +1,8 @@
 ---
 - name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
-  hosts: ansible-multi-node-1
-  become: true
+  hosts: ansible-multi-node-2
+  become: yes
+  become_method: sudo
   roles:
     - ansible-os-hardening
   pre_tasks:
@@ -31,7 +32,7 @@
     os_filesystem_whitelist: []
     sysctl_config:
       net.ipv4.ip_forward: 0
-      net.ipv6.conf.all.forwarding: 0
+     # net.ipv6.conf.all.forwarding: 0
       net.ipv6.conf.all.accept_ra: 0
       net.ipv6.conf.default.accept_ra: 0
       net.ipv4.conf.all.rp_filter: 1
@@ -41,10 +42,10 @@
      # net.ipv4.icmp_ratelimit: 100
      # net.ipv4.icmp_ratemask: 88089
       net.ipv6.conf.all.disable_ipv6: 1
-      net.ipv4.conf.all.arp_ignore: 1
-      net.ipv4.conf.all.arp_announce: 2
-      net.ipv4.conf.all.shared_media: 1
-      net.ipv4.conf.default.shared_media: 1
+     # net.ipv4.conf.all.arp_ignore: 1
+     # net.ipv4.conf.all.arp_announce: 2
+     # net.ipv4.conf.all.shared_media: 1
+     # net.ipv4.conf.default.shared_media: 1
       net.ipv4.conf.all.accept_source_route: 0
       net.ipv4.conf.default.accept_source_route: 0
       net.ipv4.conf.default.accept_redirects: 0
@@ -56,13 +57,17 @@
       net.ipv4.conf.all.send_redirects: 0
       net.ipv4.conf.default.send_redirects: 0
       net.ipv4.conf.all.log_martians: 1
-      net.ipv6.conf.default.router_solicitations: 0
-      net.ipv6.conf.default.accept_ra_rtr_pref: 0
-      net.ipv6.conf.default.accept_ra_pinfo: 0
-      net.ipv6.conf.default.accept_ra_defrtr: 0
-      net.ipv6.conf.default.autoconf: 0
-      net.ipv6.conf.default.dad_transmits: 0
-      net.ipv6.conf.default.max_addresses: 1
+      net.ipv4.conf.defaout.log_martians: 1
+      net.ipv4.tcp_syncookies: 1
+      #net.ipv6.conf.default.router_solicitations: 0
+      #net.ipv6.conf.default.accept_ra_rtr_pref: 0
+      #net.ipv6.conf.default.accept_ra_pinfo: 0
+      #net.ipv6.conf.default.accept_ra_defrtr: 0
+      #net.ipv6.conf.default.autoconf: 0
+      #net.ipv6.conf.default.dad_transmits: 0
+      #net.ipv6.conf.default.max_addresses: 1
+      net.ipv6.conf.default.disable_ipv6: 1
+      net.ipv6.conf.lo.disable_ipv6: 1 
       kernel.sysrq: 0
       fs.suid_dumpable: 0   #4.1
       kernel.randomize_va_space: 2  #4.3

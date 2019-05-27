@@ -4,19 +4,19 @@
 # still getting found and the permissions minimized in the next task.
 # This is also the reason why there's ignore_errors: true on the task.
 # also see: https://github.com/dev-sec/ansible-os-hardening/issues/219
-- name: find files with write-permissions for group
-  shell: "find -L {{ item }} -perm /go+w -type f" # noqa 305
-  with_flattened:
-    - '/usr/local/sbin'
-    - '/usr/local/bin'
-    - '/usr/sbin'
-    - '/usr/bin'
-    - '/sbin'
-    - '/bin'
-    - "{{ os_env_extra_user_paths }}" # noqa 104
-  register: minimize_access_directories
-  ignore_errors: true
-  changed_when: false
+#- name: find files with write-permissions for group
+ # shell: "find -L {{ item }} -perm /go+w -type f" # noqa 305
+  #with_flattened:
+   # - '/usr/local/sbin'
+   # - '/usr/local/bin'
+   # - '/usr/sbin'
+   # - '/usr/bin'
+   # - '/sbin'
+   # - '/bin'
+   # - "{{ os_env_extra_user_paths }}" # noqa 104
+#  register: minimize_access_directories
+ # ignore_errors: true
+  #changed_when: false
 
 - name: minimize access on found files
   file:
@@ -41,10 +41,10 @@
     group: '{{ os_passwd_perms.group }}'
     mode: '{{ os_passwd_perms.mode }}'
 
-- name: change su-binary to only be accessible to user and group root
-  file:
-    dest: '/bin/su'
-    owner: 'root'
-    group: 'root'
-    mode: '0750'
-  when: '"change_user" not in os_security_users_allow'
+#- name: change su-binary to only be accessible to user and group root
+ # file:
+  #  dest: '/bin/su'
+   # owner: 'root'
+   # group: 'root'
+   # mode: '0750'
+ # when: '"change_user" not in os_security_users_allow'

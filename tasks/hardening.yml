@@ -17,26 +17,31 @@
   tags: auditd
   when: os_auditd_enabled
 
-- import_tasks: limits.yml
+- import_tasks: limits2.yml
   tags: limits
 
 - import_tasks: login_defs.yml
   tags: login_defs
+  ignore_errors: yes 
 
 - import_tasks: minimize_access.yml
   tags: minimize_access
+  ignore_errors: yes
 
 - import_tasks: pam.yml
   tags: pam
+  ignore_errors: yes
 
 - import_tasks: modprobe.yml
   tags: modprobe
 
-- import_tasks: profile.yml
-  tags: profile
+#- import_tasks: profile.yml
+ # tags: profile
+  #ignore_errors: yes
 
 - import_tasks: securetty.yml
   tags: securetty
+  ignore_errors: yes
 
 - import_tasks: suid_sgid.yml
   when: os_security_suid_sgid_enforce
@@ -44,9 +49,10 @@
 
 - import_tasks: sysctl.yml
   tags: sysctl
+  ignore_errors: yes
 
-- import_tasks: user_accounts.yml
-  tags: user_accounts
+#- import_tasks: user_accounts.yml
+ # tags: user_accounts
 
 - import_tasks: rhosts.yml
   tags: rhosts
