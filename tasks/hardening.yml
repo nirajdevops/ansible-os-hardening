@@ -35,6 +35,15 @@
 - import_tasks: modprobe.yml
   tags: modprobe
 
+- import_tasks: sshd_config.yml
+  tags: ssh
+
+- import_tasks: file_permission.yml
+  tags: file
+
+#- import_tasks: log_permission.yml
+#  tags: log
+
 #- import_tasks: profile.yml
  # tags: profile
   #ignore_errors: yes

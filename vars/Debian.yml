@@ -29,3 +29,8 @@ os_auth_sys_uid_min: 100
 os_auth_sys_uid_max: 999
 os_auth_sys_gid_min: 100
 os_auth_sys_gid_max: 999
+os_sshd_rsa_auth: yes
+os_host_based_auth: no
+os_sshd_max_auth_tries: 4
+os_sshd_client_alive_interval: 300
+os_sshd_client_alive_count_max: 0
