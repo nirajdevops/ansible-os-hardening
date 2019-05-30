@@ -1,0 +1,7 @@
+---
+- block:
+  - name: "Example2: Add the line if it does not exist"
+    lineinfile:
+      path: /etc/security/limits.conf
+      line: "* hard core 0"
+      state: present

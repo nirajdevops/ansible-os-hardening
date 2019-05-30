@@ -1,0 +1,8 @@
+---
+- name: Install network manager for disabling wifi
+  package:
+    name: network-manager
+    state: 'present'
+
+- name: Disable wifi
+  shell: nmcli nm wifi off

@@ -1,0 +1,28 @@
+---
+- name: "Disable DCCP"
+  lineinfile:
+    path: /etc/modprobe.d/osh_disable.conf
+    line: "install dccp /bin/true"
+    state: present
+    create: yes
+
+- name: "Disable SCTP"
+  lineinfile:
+    path: /etc/modprobe.d/osh_disable.conf
+    line: "install sctp /bin/true"
+    state: present
+    create: yes
+
+- name: "Disable RDS"
+  lineinfile:
+    path: /etc/modprobe.d/osh_disable.conf
+    line: "install rds /bin/true"
+    state: present
+    create: yes
+
+- name: "Disable TIPC"
+  lineinfile:
+    path: /etc/modprobe.d/osh_disable.conf
+    line: "install tipc /bin/true"
+    state: present
+    create: yes

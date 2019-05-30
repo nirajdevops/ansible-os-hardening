@@ -1,0 +1,32 @@
+---
+- name: to set a permission of boot.log
+  shell: chmod 600 /var/log/boot.log*
+- name: to set a permission of cron
+  shell: chmod 600 /var/log/cron*
+- name: to set a permission of maillog
+  shell: chmod 600 /var/log/maillog*
+- name: to set a permission of messages
+  shell: chmod 600 /var/log/messages*
+- name: to set a permission of secure
+  shell: chmod 600 /var/log/secure*
+- name: to set a permission of spooler
+  shell: chmod 600 /var/log/spooler*
+- name: to set a permission of btmp
+  shell: chmod 600 /var/log/btmp*
+- name: to set a permission of faillog
+  shell: chmod 600 /var/log/faillog
+- name: to set a permission of syslog
+  shell: chmod 600 /var/log/syslog*
+- name: to set a permission of auth.log
+  shell: chmod 600 /var/log/auth.log*
+- name: to set a permission of news
+  shell: chmod 750 /var/log/news/*
+- name: to set a permission of squid
+  shell: chmod 750 /var/log/squid/*
+- name: to set a permission of vbox
+  shell: chmod 750 /var/log/vbox/*
+- name: to set a permission of dmesg
+  shell: chmod 750 /var/log/dmesg
+- name: to set a permission of wtmp
+  shell: chmod 750 /var/log/wtmp*
+

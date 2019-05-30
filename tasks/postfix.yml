@@ -1,0 +1,12 @@
+---
+- name: "Check if postfix exist"
+  stat:
+    path: /etc/postfix/main.cf
+  register: stat_result
+
+- name: "Configure Mail Transfer Agent for Local-Only Mode"
+  lineinfile:
+    path: /etc/postfix/main.cf
+    line: "inet_interfaces = localhost"
+    state: present
+  when: stat_result.stat.exists == True 

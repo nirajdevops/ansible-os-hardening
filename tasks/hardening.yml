@@ -38,11 +38,21 @@
 - import_tasks: sshd_config.yml
   tags: ssh
 
+- import_tasks: tcpd.yml
+  tags: tcpd
+
 - import_tasks: file_permission.yml
   tags: file
 
-#- import_tasks: log_permission.yml
-#  tags: log
+- import_tasks: rm_spl_purp_packages.yml
+  tags: rm_spl
+
+#- import_tasks: apparmor.yml
+ # tags: armor
+
+- import_tasks: log_perm.yml
+  tags: log
+  ignore_errors: yes
 
 #- import_tasks: profile.yml
  # tags: profile
@@ -69,6 +79,7 @@
 - import_tasks: yum.yml
   when: ansible_os_family == 'RedHat'
   tags: yum
+  ignore_errors: yes
 
 - import_tasks: apt.yml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

@@ -1,0 +1,57 @@
+---
+- block:
+  - name: to change the permission of crontab 
+    file:
+      path: '/etc/cron.d'
+      owner: root
+      group: root
+      mode: 0600
+      state: 'directory'
+  - name: to change the permission of crontab
+    file:
+      path: '/etc/cron.hourly'
+      owner: root
+      group: root
+      mode: 0600
+      state: 'directory'
+  - name: to change the permission of crontab
+    file:
+      path: '/etc/cron.daily'
+      owner: root
+      group: root
+      mode: 0600
+      state: 'directory'
+  - name: to change the permission of crontab
+    file:
+      path: '/etc/cron.monthly'
+      owner: root
+      group: root
+      mode: 0600
+      state: 'directory'
+  - name: to change the permission of crontab
+    file:
+      path: '/etc/cron.weekly'
+      owner: root
+      group: root
+      mode: 0600
+      state: 'directory'
+  - name: to change the permission of crontab
+    file:
+      path: '/etc/crontab'
+      owner: root
+      group: root
+      mode: 0600
+  - name: to change the permioission of cron in var/spool
+    file:
+      path: '/var/spool/cron'
+      owner: root
+      group: root
+      mode: 0770
+      recurse: yes 
+  - name: to change the permioission of boot #3.1
+    file:
+      path: '/boot/grub/grub.cfg'
+      owner: root
+      group: root
+      mode: 0600
+

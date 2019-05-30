@@ -1,0 +1,15 @@
+---
+- block:
+   - name: install tcp wrapper
+     package: 
+        name: "tcpd" 
+        state: "present"
+
+   - name: set permission for hosts.allow
+     file:   
+        path: '/etc/hosts.allow'
+        mode: 0644
+   - name: set permission for hosts.deny
+     file:
+        path: '/etc/hosts.deny'
+        mode: 0644

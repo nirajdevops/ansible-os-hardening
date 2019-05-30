@@ -1,0 +1,28 @@
+---
+- name: Make sure syslog-ng is installed
+  package:
+    name: 'syslog-ng'
+    state: 'present'
+
+- name: configure permission for syslog-ng logs
+  shell: "chmod 600 {{ item }}" #change permission to 644 for secure group
+  loop:
+    - "/var/log/auth.log*"
+    - "/var/log/cron.log*"
+    - "/var/log/daemon.log*"
+    - "/var/log/kern.log*"
+    - "/var/log/lpr.log*"
+    - "/var/log/mail.log*"
+    - "/var/log/syslog*"
+    - "/var/log/user.log*"
+    - "/var/log/uucp.log*"
+    - "/var/log/mail.info*"
+    - "/var/log/mail.warn*"
+    - "/var/log/mail.err*"
+    - "/var/log/news/news.crit*"
+    - "/var/log/news/news.err*"
+    - "/var/log/news/news.notice*"
+    - "/var/log/debug*"
+    - "/var/log/error*"
+    - "/var/log/messages*"
+    - "/var/log/ppp.log*"

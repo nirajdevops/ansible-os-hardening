@@ -1,0 +1,13 @@
+---
+- name: Uninstall special purpose packages
+  package: 
+    name: '{{ special_purpose_package }}'
+    state: 'absent'
+
+- name: Clean remove biosdevname
+  shell: update-initramfs -u
+
+- name: Uninstall http packages
+  package: 
+    name: '{{ special_http_packages }}'
+    state: 'absent'
