@@ -16,6 +16,8 @@ os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
 #os_sshd_client_alive_interval: 300
 #os_sshd_client_alive_count_max: 0
 
+grub_default_options: "quiet apparmor=1 security=apparmor"  #for activate apparmor
+
 os_chfn_restrict: ''
 # may contain: change_user
 os_security_users_allow: []
@@ -32,7 +34,7 @@ os_security_suid_sgid_remove_from_unknown: false
 
 # remove packages with known issues
 os_security_packages_clean: true
-os_security_packages_list: ['xinetd', 'time', 'telnet-server', 'rsh-server', 'prelink', 'nis', 'talk-server', 'tftp-server', 'chargen', 'daytime', 'echo', 'discard']
+#os_security_packages_list: ['xinetd', 'time', 'telnet-server', 'rsh-server', 'prelink', 'nis', 'talk-server', 'tftp-server', 'chargen', 'daytime', 'echo', 'discard']
 
 # Allow interactive startup (rhel, centos)
 os_security_init_prompt: true
@@ -148,7 +150,14 @@ sysctl_config:
 
   # Assign one global unicast IPv6 addresses to each interface | sysctl-28
   net.ipv6.conf.default.max_addresses: 1
+  #
+  net.ipv4.tcp_syncookies: 1
 
+  #
+  net.ipv6.conf.default.disable_ipv6: 1
+  
+  #
+  net.ipv6.conf.lo.disable_ipv6: 1
   # This settings controls how the kernel behaves towards module changes at
   # runtime. Setting to 1 will disable module loading at runtime.
   # Setting it to 0 is actually never supported. | sysctl-29
