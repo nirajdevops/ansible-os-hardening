@@ -1,0 +1,16 @@
+---
+- name: Get user accounts | os-09
+  command: "awk -F: '{print $1}' /etc/passwd"
+  changed_when: False
+  check_mode: False
+  register: users
+
+- name: Set home directory permissions
+  file: 
+    path: '~{{ item }}'
+    mode: '0750'
+  with_flattened: '{{ users.stdout_lines | default([]) }}'
+
+- name: Set permissions to dot (hidden) files
+  shell: 'chmod 750 ~{{ item }}/.[!.]*'
+  with_flattened: '{{ users.stdout_lines | default([]) }}'

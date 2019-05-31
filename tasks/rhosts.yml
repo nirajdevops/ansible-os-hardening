@@ -21,3 +21,9 @@
     dest: '~{{ item }}/.netrc'
     state: 'absent'
   with_flattened: '{{ users.stdout_lines | default([]) }}'
+
+- name: delete .forward-files from system 
+  file: 
+    dest: '~{{ item }}/.forward'
+    state: 'absent'
+  with_flattened: '{{ users.stdout_lines | default([]) }}'

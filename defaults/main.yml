@@ -38,7 +38,7 @@ os_security_packages_list: ['xinetd', 'time', 'telnet-server', 'telnet', 'rsh-se
 
 # Remove packages with special usage. TODO: Check whether they are needed before executing on each batch of servers.
 special_purpose_package: ['xserver-xorg-core', 'avahi-daemon', 'isc-dhcp-server', 'isc-dhcp-server6', 'slapd', 'bind9', 'vsftpd', 'dovecot', 'smdb', 'snmpd', 'biosdevname', 'nfs-kernel-server', 'nfs-common', 'portmap', 'nfs-utils', 'rsync']
-special_http_packages: ['httpd', 'nginx', 'squid']
+special_http_packages: ['httpd', 'nginx', 'squid', 'apache2']
 
 #item.path: "/var/log*"
 #files_to_set_permission: ['boot.log*', 'cron', 'maillog*', 'secure*', 'spooler*', 'btmp*', 'faillog*', 'syslog*', 'auth.log*']
