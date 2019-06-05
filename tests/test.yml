@@ -1,6 +1,8 @@
 ---
 - name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
-  hosts: ansible-multi-node-1
+  hosts: lnyati-1
+#  hosts: ansible-multi-node-4
+ # hosts: ansible-multi-node-3
   become: yes
   become_method: sudo
   roles:
@@ -10,13 +12,13 @@
       apt:
         update_cache: yes
       when: ansible_os_family == 'Ubuntu'
-  #  - name: install required tools on fedora
-   #   dnf:
-    #    name:
-     #     - python
-      #    - findutils
-       #   - procps-ng
-     # when: ansible_distribution == 'Fedora'
+    - name: install required tools on fedora
+      dnf:
+        name:
+          - python
+          - findutils
+          - procps-ng
+      when: ansible_distribution == 'Fedora'
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
   vars:   #7.1 & 7.2

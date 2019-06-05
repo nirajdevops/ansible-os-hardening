@@ -41,14 +41,14 @@
       owner: root
       group: root
       mode: 0600
-  - name: to change the permioission of cron in var/spool
+  - name: to change the permission of cron in var/spool
     file:
       path: '/var/spool/cron'
       owner: root
       group: root
       mode: 0770
       recurse: yes 
-  - name: to change the permioission of boot #3.1
+  - name: to change the permission of boot #3.1
     file:
       path: '/boot/grub/grub.cfg'
       owner: root

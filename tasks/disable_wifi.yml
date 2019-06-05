@@ -4,5 +4,10 @@
     name: network-manager
     state: 'present'
 
-- name: Disable wifi
+- name: Disable wifi debian
   shell: nmcli nm wifi off
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Disable wifi redhat
+  shell: nmcli r wifi off
+  when: ansible_os_family == 'RedHat'

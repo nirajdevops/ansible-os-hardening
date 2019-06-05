@@ -4,7 +4,12 @@
      package: 
         name: "tcpd" 
         state: "present"
-
+     ignore_errors: yes
+   - name: install tcp wrapper
+     package:
+        name: "tcp_wrappers"
+        state: "present"
+     ignore_errors: yes
    - name: set permission for hosts.allow
      file:   
         path: '/etc/hosts.allow'

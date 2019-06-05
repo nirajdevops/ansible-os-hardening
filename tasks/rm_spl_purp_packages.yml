@@ -6,6 +6,7 @@
 
 - name: Clean remove biosdevname
   shell: update-initramfs -u
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Uninstall http packages
   package: 
