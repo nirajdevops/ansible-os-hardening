@@ -4,10 +4,11 @@
     name: network-manager
     state: 'present'
 
-- name: Disable wifi debian
+- name: Disable wifi - oldversion nmcli
   shell: nmcli nm wifi off
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  register: result
+  ignore_errors: True
 
-- name: Disable wifi redhat
+- name: Disable wifi - newversion nmcli
   shell: nmcli r wifi off
-  when: ansible_os_family == 'RedHat'
+  when: "'Error' in result.stderr"
