@@ -1,6 +1,8 @@
 ---
 - name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
-  hosts: all
+  hosts: lnyati-1
+#  hosts: ansible-multi-node-4
+ # hosts: ansible-multi-node-3
   become: yes
   become_method: sudo
   roles:
@@ -36,7 +38,7 @@
    # os_sshd_client_alive_interval: 300
   #  os_sshd_client_alive_count_max: 0
     sysctl_config:
-      #net.ipv4.ip_forward: 0
+      net.ipv4.ip_forward: 0
      # net.ipv6.conf.all.forwarding: 0
       net.ipv6.conf.all.accept_ra: 0
       net.ipv6.conf.default.accept_ra: 0
@@ -64,7 +66,6 @@
       net.ipv4.conf.all.log_martians: 1
       net.ipv4.conf.defaout.log_martians: 1
       net.ipv4.tcp_syncookies: 1
-      #net.ipv4.route.flush: 1
       #net.ipv6.conf.default.router_solicitations: 0
       #net.ipv6.conf.default.accept_ra_rtr_pref: 0
       #net.ipv6.conf.default.accept_ra_pinfo: 0

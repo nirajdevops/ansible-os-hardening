@@ -18,14 +18,14 @@
  # ignore_errors: true
   #changed_when: false
 
-- name: minimize access on found files
-  file:
-    path: '{{ item.1 }}'
-    mode: 'go-w'
-    state: file
-  with_subelements:
-    - "{{ minimize_access_directories.results }}"
-    - stdout_lines
+#- name: minimize access on found files
+#  file:
+#    path: '{{ item.1 }}'
+#    mode: 'go-w'
+#    state: file
+#  with_subelements:
+#    - "{{ minimize_access_directories.results }}"
+#    - stdout_lines
 
 - name: change shadow ownership to root and mode to 0600 | os-02  #12.2 
   file:

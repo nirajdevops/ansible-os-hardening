@@ -34,11 +34,11 @@ os_security_suid_sgid_remove_from_unknown: false
 
 # remove packages with known issues
 os_security_packages_clean: true
-os_security_packages_list: ['xinetd', 'time', 'telnet-server', 'telnet', 'rsh-server', 'rsh-client', 'prelink', 'nis', 'talk-server', 'tftp-server', 'chargen', 'daytime', 'echo', 'discard']
+os_security_packages_list: ['xinetd', 'time', 'telnet-server', 'rsh-server', 'rsh-client', 'prelink', 'nis', 'talk-server', 'talk-client', 'tftp-server', 'chargen', 'daytime', 'echo', 'discard']
 
 # Remove packages with special usage. TODO: Check whether they are needed before executing on each batch of servers.
-special_purpose_package: ['xserver-xorg-core', 'avahi-daemon', 'isc-dhcp-server', 'isc-dhcp-server6', 'slapd', 'bind9', 'vsftpd', 'dovecot', 'smdb', 'snmpd', 'biosdevname', 'nfs-kernel-server', 'nfs-common', 'portmap', 'nfs-utils', 'rsync']
-special_http_packages: ['httpd', 'nginx', 'squid', 'apache2']
+special_purpose_package: ['xserver-xorg-core', 'avahi-daemon', 'isc-dhcp-server', 'isc-dhcp-server6', 'slapd', 'bind9', 'vsftpd', 'dovecot', 'smdb', 'snmpd', 'biosdevname', 'nfs-kernel-server', 'nfs-common', 'portmap', 'nfs-utils', 'rsync', 'cups']
+special_http_packages: ['squid']
 
 #item.path: "/var/log*"
 #files_to_set_permission: ['boot.log*', 'cron', 'maillog*', 'secure*', 'spooler*', 'btmp*', 'faillog*', 'syslog*', 'auth.log*']
@@ -66,7 +66,7 @@ ufw_ipt_modules: 'nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns'
 
 sysctl_config:
   # Disable IPv4 traffic forwarding. | sysctl-01
-  net.ipv4.ip_forward: 0
+ # net.ipv4.ip_forward: 0
 
   # Disable IPv6 traffic forwarding. | sysctl-19
   net.ipv6.conf.all.forwarding: 0

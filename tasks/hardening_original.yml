@@ -1,0 +1,108 @@
+---
+- name: Set OS family dependent variables
+  include_vars: '{{ ansible_os_family }}.yml'
+  tags: always
+
+- name: Set OS dependent variables
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+      - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
+      - '{{ ansible_distribution }}.yml'
+      - '{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml'
+      skip: true
+  tags: always
+
+- import_tasks: auditd.yml
+  tags: auditd
+  when: os_auditd_enabled
+  ignore_errors: yes
+
+- import_tasks: limits2.yml
+  tags: limits
+
+- import_tasks: login_defs.yml
+  tags: login_defs
+  ignore_errors: yes 
+
+- import_tasks: minimize_access.yml
+  tags: minimize_access
+  ignore_errors: yes
+
+#- import_tasks: pam.yml
+ # tags: pam
+#  ignore_errors: yes
+
+- import_tasks: modprobe.yml
+  tags: modprobe
+
+- import_tasks: sshd_config.yml
+  tags: ssh
+
+- import_tasks: tcpd.yml
+  tags: tcpd
+
+- import_tasks: file_permission.yml
+  tags: file
+  ignore_errors: yes
+
+- import_tasks: rm_spl_purp_packages.yml
+  tags: rm_spl
+  ignore_errors: yes
+
+- import_tasks: postfix.yml
+  tags: postfix
+
+- import_tasks: disable_nw_protocols.yml
+  tags: dis_nw_proto
+
+- import_tasks: disable_wifi.yml
+  tags: dis_wifi
+  ignore_errors: yes
+
+#- import_tasks: syslog-ng.yml
+#  tags: syslog
+ # ignore_errors: yes
+#- import_tasks: apparmor.yml
+ # tags: armor
+
+- import_tasks: log_perm.yml
+  tags: log
+  ignore_errors: yes
+
+#- import_tasks: profile.yml
+ # tags: profile
+  #ignore_errors: yes
+
+- import_tasks: securetty.yml
+  tags: securetty
+  ignore_errors: yes
+
+- import_tasks: suid_sgid.yml
+  when: os_security_suid_sgid_enforce
+  tags: suid_sgid
+  ignore_errors: yes
+
+- import_tasks: sysctl.yml
+  tags: sysctl
+  ignore_errors: yes
+
+#- import_tasks: user_accounts.yml
+ # tags: user_accounts
+
+- import_tasks: rhosts.yml
+  tags: rhosts
+
+- import_tasks: user_home_permissions.yml
+  tags: user_home_permission
+  ignore_errors: yes
+
+- import_tasks: yum.yml
+  when: ansible_os_family == 'RedHat'
+  tags: yum
+  ignore_errors: yes
+
+- import_tasks: apt.yml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: apt
+  ignore_errors: yes
